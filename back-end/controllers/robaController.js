@@ -37,3 +37,49 @@ export const addNewRoba = async (req, res) => {
     })
   }
 }
+
+export const getAllRoba = async (req, res) => {
+
+  try {
+    const robaData = await RobaModel.find()
+    .populate('supplier');
+
+    res.status(200).send({
+      statusCode: 200,
+      payload: robaData
+    })
+  } catch (error) {
+    res.status(500).send({
+      statusCode: 500,
+      message: 'Internal Server Error!',
+      error
+    })
+  }
+}
+
+export const getRobaById = async (req, res) => {
+  const { robaId } = req.params;
+
+  try {
+    const robaById = await RobaModel.findById(robaId)
+    .populate('supplier');
+
+    if(!robaById) {
+      return res.status(404).send({
+        statusCode: 404,
+        message: `Roba con id ${robaId} non trovato.`
+      })
+    }
+
+    res.status(200).send({
+      statusCode: 200,
+      payload: robaById
+    })
+  } catch (error) {
+    res.status(500).send({
+      statusCode: 500,
+      message: 'Internal Server Error!',
+      error
+    })
+  }
+}

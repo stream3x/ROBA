@@ -54,11 +54,78 @@ export const getUserById = async (req, res) => {
   const { userId } = req.params;
 
   try {
-    const userById = await UserModel.findById(userId);
+    const userById = await UserModel.findById(userId).
+    populate('roba');
+
+    if(!userById) {
+      return res.status(404).send({
+        statusCode: 404,
+        message: `Utente con id ${userId} non trovato.`
+      })
+    }
 
     res.status(200).send({
       statusCode: 200,
       userById
+    })
+  } catch (error) {
+    res.status(500).send({
+      statusCode: 500,
+      message: 'Internal Server Error!',
+      error
+    })
+  }
+}
+
+export const getUserByEmail = async (req, res) => {
+  const { userEmail } = req.params;
+
+
+  console.log(userEmail);
+
+  try {
+    const userByEmail = await UserModel.findOne({ email: userEmail })
+    .populate('roba')
+
+      if(!userByEmail) {
+        return res.status(404).send({
+          statusCode: 404,
+          message: `Utente con indirizzo email ${userEmail} non trovato.`
+        })
+      }
+
+    res.status(200).send({
+      statusCode: 200,
+      userByEmail
+    })
+  } catch (error) {
+    res.status(500).send({
+      statusCode: 500,
+      message: 'Internal Server Error!',
+      error
+    })
+  }
+}
+
+export const getUsersByName = async (req, res) => {
+  const { usersName } = req.query;
+
+  try {
+    const usersByName = await UserModel.find({ name: {
+      $regex: usersName,
+      $options: 'i'
+    } }).populate('roba');
+
+    if(usersByName.length === 0) {
+      return res.status(404).send({
+        statusCode: 404,
+        message: 'Nessun utente trovato.'
+      })
+    }
+
+    res.status(200).send({
+      statusCode: 200,
+      usersByName
     })
   } catch (error) {
     res.status(500).send({

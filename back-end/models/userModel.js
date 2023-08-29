@@ -30,16 +30,33 @@ const UserModelSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  roba: {
-    type: Array,
-    required: false,
+  roba: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'RobaModel',
     default: []
+  }],
+  exchange: [{
+    type: mongoose.SchemaTypes.ObjectId,
+    ref: 'ExchangeModel',
+    default: []
+  }],
+  score: {
+    type: Number,
+    required: false,
+    default: 0
   },
-  exchange: {
-    //Exchange
-  }
   rating: {
-
+    reviews: {
+      type: Array,
+      required: false,
+      default: []
+    },
+    rate: {
+      type: Number,
+      required:false,
+      default: 0
+    }
   }
+}, { timestamps: true, strict: true})
 
-})
+export const UserModel = mongoose.model('UserModel', UserModelSchema, 'Users');

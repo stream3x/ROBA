@@ -1,6 +1,9 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import cors from 'cors';
+import usersRoute from './routes/usersRoutes.js'
+import robaRoute from './routes/robaRoutes.js'
 
 dotenv.config();
 const app = express();
@@ -11,8 +14,17 @@ app.use(express.json());
 app.use(cors());
 
 // Routes imports:
+app.use('/users', usersRoute);
+app.use('/roba', robaRoute);
 
 
-app.listen(PORT, () => {
-  console.log(`Il server è in ascolto sulla porta ${PORT}`);
+// Server MongoDB connect
+mongoose.connect(process.env.MONGO_DB_URL);
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'Errore di connessione al server!'))
+db.once('open', () => {
+  console.log('Database MongoDB connesso!');
+  app.listen(PORT, () => {
+    console.log(`Il server è in ascolto sulla porta ${PORT}`);
+  })
 })

@@ -1,4 +1,3 @@
-import react from  'react';
 import { useState, useEffect } from 'react';
 
 const ModalAlert = ({ message, expTime }) => {

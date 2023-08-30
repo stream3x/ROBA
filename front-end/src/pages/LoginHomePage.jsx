@@ -1,11 +1,10 @@
-import react from 'react';
 import logoImage from '../images/logo500.png';
-import ModalAlert from './ModalAlert.jsx';
+import ModalAlert from '../components/ModalAlert.jsx';
 
 const LoginHomePage = () => {
   return (
     <div className="container">
-        <img src={logoImage} id="logo-image" />
+        <img src={logoImage} id="logo-image" alt="Roba logo"/>
       <div className="border-box">
         <label htmlFor="email">Email:</label>
         <input type="email" id="email" placeholder="Inserisci la tua email"></input>

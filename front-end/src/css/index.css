@@ -10,7 +10,7 @@ font-family: 'Merriweather Sans', sans-serif; */
 }
 
 body {
-  background-color: #EADBC8;
+  background-color: #F8F0E5;
   color: #102C57;
   font-family: 'Merriweather', serif;
   margin: 0px;
@@ -35,13 +35,15 @@ label {
   margin-bottom: -10px;
 }
 input {
-  border: 2px solid #DAC0A3;
+  border: 2px solid #EADBC8;
   border-radius: 5px;
-  background-color: #EADBC8;
+  background-color: #F8F0E5;
   padding: 15px;
   font-size: 12pt;
   outline: none;
   transition: border-color 0.3s ease-in-out;
+  min-width: 210px;
+  text-align: center;
 }
 input:focus {
   border: 2px solid #102C57;
@@ -88,7 +90,7 @@ a:visited {
 }
 
 .border-box {
-  border: 1px solid #DAC0A3;
+  border: 1px solid #EADBC8;
   border-radius: 5px;
   padding: 50px;
   display: flex;
@@ -96,3 +98,13 @@ a:visited {
   align-items: center;
   gap: 20px;
 }
+
+      .custom-loader {
+        width:50px;
+        height:50px;
+        border-radius:50%;
+        background:conic-gradient(#0000 10%,#102C57);
+        -webkit-mask:radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
+        animation:s3 1s infinite linear;
+      }
+      @keyframes s3 {to{transform: rotate(1turn)}}

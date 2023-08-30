@@ -1,7 +1,9 @@
 
 const LoggedHomePage = () => {
+
   return (
-    <div>
+    <div className="container">
+      <h1>LoggedHomePage</h1>
     </div>
   )
 }

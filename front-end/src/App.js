@@ -5,11 +5,10 @@ import { useSelector } from 'react-redux';
 
 import Navbar from './components/Navbar.jsx'
 
-
 function App() {
 
-const isLogged = useSelector((state) => state.login.value)
-console.log(isLogged);
+  const isLogged = useSelector((state) => state.login.value)
+  console.log(isLogged);
 
   return (
     <div>

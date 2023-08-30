@@ -41,9 +41,16 @@ const UserModelSchema = new mongoose.Schema({
     default: []
   }],
   score: {
-    type: Number,
-    required: false,
-    default: 0
+    gainScore: {
+      type: Number,
+      required: false,
+      default: 0
+    },
+    givenScore: {
+      type: Number,
+      required: false,
+      default: 0
+    }
   },
   rating: {
     reviews: {

@@ -36,15 +36,10 @@ const RobaModelSchema = new mongoose.Schema({
     required: false,
     default: ''
   },
-  request: {
-    isRequired: {
-      type: Boolean,
-      required: false
-    },
-    takerId: {
-      type: String,
-      required: false
-    }
+  picked: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 }, { timestamps: true, strict: true })
 

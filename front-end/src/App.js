@@ -3,7 +3,7 @@ import LoginHomePage from './pages/LoginHomePage.jsx';
 import LoggedHomePage from './pages/LoggedHomePage.jsx';
 import { useSelector } from 'react-redux';
 
-import Navbar from './components/Navbar.jsx'
+import Navbar from './components/navbar.jsx'
 
 function App() {
 

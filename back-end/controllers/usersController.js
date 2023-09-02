@@ -1,5 +1,6 @@
 import { UserModel } from '../models/userModel.js';
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
+import jwt from 'jsonwebtoken';
 
 export const addNewUser = async (req, res) => {
 
@@ -30,6 +31,40 @@ export const addNewUser = async (req, res) => {
         error
       })
     }
+}
+
+export const login = async (req, res) => {
+  const user = await UserModel.findOne({ email: req.body.email })
+  if(!user) {
+    return res.status(404).send({
+      sendCode: 404,
+      message:'Utente o password non validi.'
+    })
+  }
+
+  if (await bcrypt.compare(req.body.password, user.password)) {
+
+    const token = jwt.sign({
+      id: user._id,
+      name: user.name,
+      surname: user.surname,
+      email: user.email,
+      birthdate: user.birthdate,
+      position: user.position,
+      avatar: user.avatar
+    }, process.env.JWT_SECRET, { expiresIn: '1h'});
+
+    return res.header('Authorization', token).status(200).send({
+      statusCode: 200,
+      token: token
+    })
+
+  }
+
+  res.status(401).send({
+    statusCode: 401,
+    message: 'Utente o password non validi.'
+  })
 }
 
 export const getAllUsers = async (req, res) => {

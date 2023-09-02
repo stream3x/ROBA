@@ -43,12 +43,13 @@ input {
   outline: none;
   transition: border-color 0.3s ease-in-out;
   min-width: 210px;
-  text-align: center;
+  text-align: left;
 }
 input:focus {
   border: 2px solid #102C57;
   transition: border-color 0.3s ease-in-out;
 }
+
 button {
   background-color: #102C57;
   border: 0px;
@@ -72,26 +73,71 @@ hr {
   width: 100%;
 }
 
-.modal-alert {
-  background-color: #102C57;
-  color: white;
-  border-radius: 5px;
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  padding: 20px;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
+/* ---------- // MODALI // ---------- */
+
+  /* --- MODAL ALERT --- */
+  .modal-alert {
+    background-color: #102C57;
+    color: white;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .modal-alert-show-add {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+  }
+
+  /* --- MODAL SCREEN --- */
+  .modal-screen {
+    background-color: #102C57;
+    color: white;
+    border-radius: 5px;
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+    top: 20px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+
+  .modal-screen-show-add {
+    opacity: 1;
+    transition: opacity 1s ease-in-out;
+  }
+
+
+  /* --- LOADER --- */
+  .custom-loader {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background:
+    radial-gradient(farthest-side,#F8F0E5 94%,#0000) top/8px 8px no-repeat,
+    conic-gradient(#0000 30%,#F8F0E5);
+  -webkit-mask: radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
+  animation:s3 1s infinite linear;
 }
 
-.modal-alert-show {
-  opacity: 1;
-  transition: opacity 1s ease-in-out;
+@keyframes s3{
+  100%{transform: rotate(1turn)}
 }
+
+/* ---------- modali ---------- */
 
 .border-box {
   border: 2px solid #EADBC8;
@@ -102,6 +148,16 @@ hr {
   align-items: center;
   gap: 20px;
 }
+
+/* ---------- // REGISTER BOX CONTAINER // ---------- */
+
+.border-box-register-add {
+  align-items: flex-start;
+}
+
+/* ---------- register box container ---------- */
+
+
 
 /* ---------- // BOX CARD CONTAINER // ---------- */
 
@@ -196,16 +252,3 @@ hr {
   }
 
   /* ---------- box card ---------- */
-
-
-
-
-      .custom-loader {
-        width:50px;
-        height:50px;
-        border-radius:50%;
-        background:conic-gradient(#0000 10%,#102C57);
-        -webkit-mask:radial-gradient(farthest-side,#0000 calc(100% - 8px),#000 0);
-        animation:s3 1s infinite linear;
-      }
-      @keyframes s3 {to{transform: rotate(1turn)}}

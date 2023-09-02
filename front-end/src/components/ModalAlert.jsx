@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const ModalAlert = ({ message, expTime }) => {
+const ModalAlert = ({ message, expTime, onClose }) => {
 
   const [showModal, setShowModal] = useState(false);
 
@@ -14,12 +14,15 @@ const ModalAlert = ({ message, expTime }) => {
     if (!showModal) {
       setTimeout(() => {
         setShowModal(false);
+        setTimeout(() => {
+          onClose();
+        }, 1000)
       }, expTime)
     }
   }, [showModal])
 
   return (
-    <div className={`modal-alert ${showModal ? 'modal-alert-show' : ''}`}>
+    <div className={`modal-alert ${showModal ? 'modal-alert-show-add' : ''}`}>
       <h4>{message}</h4>
     </div>
   )

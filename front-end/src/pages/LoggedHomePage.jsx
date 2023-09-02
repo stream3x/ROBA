@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 
 import RobaCard from '../components/RobaCard.jsx'
+import LoaderModal from '../components/LoaderModal.jsx'
 
 const LoggedHomePage = () => {
 
   // ----- CHIAMATA FETCH PER RICEVERE GLI OGGETTI ROBA ----- //
 
   const [robaArray, setRobaArray] = useState([]);
-  const [isLoadingFetch, setIsLoadingFetch] = useState(true);
+  const [isFetchPending, setIsFetchPending] = useState(true);
 
   const getRobaData = async () => {
-
     try {
       const response = await fetch('http://192.168.0.102:6060/roba', {
         method: 'GET',
@@ -21,6 +21,7 @@ const LoggedHomePage = () => {
 
         if(response.ok) {
           const robaData = await response.json();
+          console.log(robaData);
           setRobaArray(robaData.payload);
         } else {
           console.log('Errore durante la chiamata al server.')
@@ -36,7 +37,7 @@ const LoggedHomePage = () => {
   }, []);
 
   useEffect(() => {
-    setIsLoadingFetch(false);
+    setIsFetchPending(false);
   }, [robaArray]);
 
   // ----- //
@@ -48,16 +49,17 @@ const LoggedHomePage = () => {
       <div className="roba-box-container">
       {
 
-        isLoadingFetch ? (
-          <p>Caricamento in corso</p>
+        isFetchPending ? (
+          <p></p>
         ) : (
         robaArray.length !== 0 && robaArray.map((element) => (
           <RobaCard key={element._id} data={element} />
         ))
       )
-
       }
       </div>
+
+      {isFetchPending && <LoaderModal isFetchPending={isFetchPending} />}
     </div>
   )
 }

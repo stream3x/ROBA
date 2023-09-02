@@ -42,7 +42,7 @@ const Navbar = () => {
           </div>
           <ul>
             <li>Home</li>
-            <li>Il mio profilo?</li>
+            <li>Il mio profilo</li>
             <li>La mia ROBA</li>
             <li>I miei scambi</li>
             <li>Il mio punteggio</li>

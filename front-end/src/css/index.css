@@ -50,6 +50,10 @@ input:focus {
   transition: border-color 0.3s ease-in-out;
 }
 
+  .wrong-input {
+    border: 2px solid red;
+  }
+
 button {
   background-color: #102C57;
   border: 0px;

@@ -55,7 +55,8 @@ const LoginHomePage = () => {
 
   // ----- CHIAMATA POST PER IL LOGIN ----- //
 
-  const [isFetchPending, setIsFetchPending] = useState(false)
+  const [isFetchPending, setIsFetchPending] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const userLogin = async () => {
     setIsFetchPending(true);
@@ -73,7 +74,9 @@ const LoginHomePage = () => {
         const userDataObject = await response.json();
         console.log("Response data: ", userDataObject);
       } else {
-        console.log("Errore: ", response.status);
+        const errorData = await response.json();
+        console.log("Errore: ", errorData.message);
+        setErrorMessage(errorData.message);
       }
     } catch (error) {
       console.log('Error type: ', error)
@@ -89,13 +92,14 @@ const LoginHomePage = () => {
         <img src={logoImage} id="logo-image" alt="Roba logo"/>
         <div className="border-box">
         <label htmlFor="email">Email:</label>
-        <input type="email" id="email" placeholder="Inserisci la tua email" onChange={handleInputData}></input>
+        <input type="email" id="email" placeholder="Inserisci la tua email" onChange={handleInputData} className={errorMessage ? 'wrong-input' : ''}></input>
         <label htmlFor="password">Password:</label>
-        <input type="password" id="password" placeholder="Inserisci la tua password" onChange={handleInputData}></input>
+        <input type="password" id="password" placeholder="Inserisci la tua password" onChange={handleInputData} className={errorMessage ? 'wrong-input' : ''}></input>
         <button onClick={userLogin}>Accedi</button>
         <a href="#"><h5>(Non sei ancora registrato? Fallo ora!)</h5></a>
       </div>
       {isModalAlert && <ModalAlert message="Benvenuto! Esegui il login per accedere alla piattaforma." expTime={6000} onClose={handleOnClose} />}
+      {errorMessage && <ModalAlert message={errorMessage} expTime={3000} onClose={handleOnClose} />}
     </div>
   )
 }

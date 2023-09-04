@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../css/navbar.css';
 
-const Navbar = () => {
+const Navbar = ({ onLogout }) => {
 
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -12,6 +13,18 @@ const Navbar = () => {
       setMenuOpen(true);
     }
   }
+
+  // ----- FUNZIONE DI LOGOUT ----- //
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem('loggedUser');
+    onLogout();
+    navigate('/');
+  }
+
+  // ----- //
 
   return (
 
@@ -24,6 +37,7 @@ const Navbar = () => {
           <li>I miei scambi</li>
           <li>Il mio punteggio</li>
           <li>Assistenza</li>
+          <li onClick={handleLogout}>Logout</li>
         </ul>
       </div>
 
@@ -47,6 +61,7 @@ const Navbar = () => {
             <li>I miei scambi</li>
             <li>Il mio punteggio</li>
             <li>Assistenza</li>
+            <li onClick={handleLogout}>Logout</li>
           </ul>
         </div>
 

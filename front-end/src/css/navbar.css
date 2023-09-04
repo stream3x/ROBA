@@ -8,6 +8,10 @@ ul {
   list-style-type: none;
 }
 
+li {
+  cursor: pointer;
+}
+
 .navbar-container {
   background-color: #DAC0A3;
   width: 100%;

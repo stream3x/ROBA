@@ -1,21 +1,10 @@
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import logoImage from '../images/logo500.png';
 import ModalAlert from '../components/ModalAlert.jsx';
+import LoggedHomePage from './LoggedHomePage.jsx';
 
-const LoginHomePage = () => {
-
-  const isLogged = useSelector((state) => state.login.value)
-  console.log(isLogged);
-
-  const navigate = useNavigate();
-  useEffect(() => {
-    if(isLogged) {
-      navigate('/homepage');
-    }
-  }, [isLogged])
+const LoginHomePage = ({ onLogin }) => {
 
   useEffect(() => {
     setIsModalAlert(true)
@@ -58,21 +47,25 @@ const LoginHomePage = () => {
   const [isFetchPending, setIsFetchPending] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
 
+  const navigate = useNavigate();
+
   const userLogin = async () => {
     setIsFetchPending(true);
 
     try {
-      const response = await fetch('http://192.168.0.102:6060/users/login', {
+      const response = await fetch('http://localhost:6060/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(userInput)
       })
-
       if(response.ok) {
         const userDataObject = await response.json();
         console.log("Response data: ", userDataObject);
+        localStorage.setItem('loggedUser', userDataObject.token);
+        onLogin();
+        navigate('/homepage');
       } else {
         const errorData = await response.json();
         console.log("Errore: ", errorData.message);

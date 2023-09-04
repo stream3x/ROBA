@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-
 import RobaCard from '../components/RobaCard.jsx'
 import LoaderModal from '../components/LoaderModal.jsx'
 
@@ -11,8 +10,9 @@ const LoggedHomePage = () => {
   const [isFetchPending, setIsFetchPending] = useState(true);
 
   const getRobaData = async () => {
+    console.log("HERE");
     try {
-      const response = await fetch('http://192.168.0.102:6060/roba', {
+      const response = await fetch('http://localhost:6060/roba', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json'

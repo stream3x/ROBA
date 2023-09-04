@@ -80,6 +80,14 @@ const LoginHomePage = ({ onLogin }) => {
 
   // ----- //
 
+  // ----- LINK A REGISTRAZIONE ----- //
+
+  const registerLink = () => {
+    navigate('/register');
+  }
+
+  // ----- //
+
   return (
     <div className="container">
         <img src={logoImage} id="logo-image" alt="Roba logo"/>
@@ -89,7 +97,7 @@ const LoginHomePage = ({ onLogin }) => {
         <label htmlFor="password">Password:</label>
         <input type="password" id="password" placeholder="Inserisci la tua password" onChange={handleInputData} className={errorMessage ? 'wrong-input' : ''}></input>
         <button onClick={userLogin}>Accedi</button>
-        <a href="#"><h5>(Non sei ancora registrato? Fallo ora!)</h5></a>
+        <a onClick={registerLink}><h5>(Non sei ancora registrato? Fallo ora!)</h5></a>
       </div>
       {isModalAlert && <ModalAlert message="Benvenuto! Esegui il login per accedere alla piattaforma." expTime={6000} onClose={handleOnClose} />}
       {errorMessage && <ModalAlert message={errorMessage} expTime={3000} onClose={handleOnClose} />}

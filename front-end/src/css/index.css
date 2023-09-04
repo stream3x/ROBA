@@ -65,6 +65,10 @@ button {
   cursor: pointer;
 }
 
+a {
+  cursor: pointer;
+}
+
 a:link {
   color: #102C57;
 }
@@ -75,6 +79,12 @@ a:visited {
 
 hr {
   width: 100%;
+}
+
+.left-arrow {
+  width: 50px;
+  margin: 10px;
+  cursor: pointer;
 }
 
 /* ---------- // MODALI // ---------- */
@@ -113,6 +123,7 @@ hr {
     top: 20px;
     display: flex;
     justify-content: center;
+    align-items: center;
     text-align: center;
     padding: 20px;
     opacity: 0;

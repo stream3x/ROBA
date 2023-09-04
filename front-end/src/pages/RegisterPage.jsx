@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-
+import { useNavigate } from 'react-router-dom';
 import justLogo from '../images/justlogo500.png';
+import leftArrow from '../images/left-arrow.png';
 import LoaderModal from '../components/LoaderModal.jsx'
 
 const RegisterPage = () => {
@@ -79,9 +80,16 @@ useEffect(() => {
 
   // ----- //
 
+  const navigate = useNavigate();
+
+  const backLink = () => {
+    navigate('/');
+  }
+
   return (
     <div className="container">
       <img src={justLogo} style={{width: '50px'}}/><h2>Pagina di registrazione</h2>
+      <img src={leftArrow} className="left-arrow" onClick={backLink} />
       <div className="border-box border-box-register-add">
         <h3>Inserisci i tuoi dati:</h3>
         <label htmlFor="name">Nome:</label>

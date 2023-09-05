@@ -17,6 +17,7 @@ export const addNewUser = async (req, res) => {
   });
 
     try {
+
       const user = await newUser.save();
 
       res.status(201).send({
@@ -24,6 +25,7 @@ export const addNewUser = async (req, res) => {
         message: 'Nuovo utente inserito correttamente.',
         payload: user
       })
+      console.log('Res: ', res);
     } catch (error) {
       res.status(500).send({
         statusCode: 500,

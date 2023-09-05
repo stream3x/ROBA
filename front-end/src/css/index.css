@@ -94,7 +94,7 @@ hr {
     background-color: #102C57;
     color: white;
     border-radius: 5px;
-    position: absolute;
+    position: fixed;
     bottom: 20px;
     left: 20px;
     right: 20px;
@@ -164,13 +164,16 @@ hr {
   gap: 20px;
 }
 
-/* ---------- // REGISTER BOX CONTAINER // ---------- */
+/* ---------- // REGISTER BOX FORM // ---------- */
 
-.border-box-register-add {
+.border-box-form-add {
+  display: flex;
+  flex-direction: column;
   align-items: flex-start;
+  gap: 20px;
 }
 
-/* ---------- register box container ---------- */
+/* ---------- register box form ---------- */
 
 
 

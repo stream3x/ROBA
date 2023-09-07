@@ -1,38 +1,53 @@
 import { UserModel } from '../models/userModel.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import cloudinary from '../utils/cloudinary.js';
 
 export const addNewUser = async (req, res) => {
 
   const hashedPassword = await bcrypt.hash(req.body.password, 10);
 
-  const newUser = new UserModel({
-    name: req.body.name,
-    surname: req.body.surname,
-    email: req.body.email,
-    password: hashedPassword,
-    birthdate: req.body.birthdate,
-    position: req.body.position, // da sostituire con geolocalizzazione
-    avatar: req.body.avatar,
-  });
+  const avatar = req.body.avatar;
 
-    try {
+  try {
 
-      const user = await newUser.save();
+  if(avatar) {
+    const uploadResponse = await cloudinary.uploader.upload(avatar, {
+      upload_preset: 'roba-users-avatar'
+    });
 
-      res.status(201).send({
-        statusCode: 201,
-        message: 'Nuovo utente inserito correttamente.',
-        payload: user
-      })
-      console.log('Res: ', res);
-    } catch (error) {
-      res.status(500).send({
-        statusCode: 500,
-        message: 'Internal Server Error!',
-        error
-      })
+    if(uploadResponse) {
+      const newUser = new UserModel({
+        name: req.body.name,
+        surname: req.body.surname,
+        email: req.body.email,
+        password: hashedPassword,
+        birthdate: req.body.birthdate,
+        position: req.body.position, // da sostituire con geolocalizzazione
+        avatar: uploadResponse,
+      });
+
+        const user = await newUser.save();
+
+        res.status(201).send({
+          statusCode: 201,
+          message: 'Nuovo utente inserito correttamente.',
+          payload: user
+        })
+
+      }
     }
+      } catch (error) {
+        console.log('Catch error: ', error);
+        res.status(500).send({
+          statusCode: 500,
+          message: 'Internal Server Error!',
+          error: error
+        })
+
+      }
+
+
 }
 
 export const login = async (req, res) => {

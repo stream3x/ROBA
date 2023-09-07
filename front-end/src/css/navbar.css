@@ -6,20 +6,27 @@
 
 ul {
   list-style-type: none;
+  height: 100%;
 }
 
 li {
   cursor: pointer;
 }
 
+li:hover {
+  text-decoration: underline;
+}
+
 .navbar-container {
-  background-color: #DAC0A3;
-  width: 100%;
+  background-color: #EADBC8;
+  color: #102C57;
+  margin: 8px 10px;
+  border: 1px solid #102C57;
+  border-radius: 5px;
 }
 
 .desktop-main {
   width: 100%;
-  color: white;
   padding: 20px 20px;
 }
 
@@ -61,7 +68,7 @@ li {
       .line-icon {
         width: 20px;
         height: 2px;
-        background-color: white;
+        background-color: #102C57;
       }
 
     .opened-menu {
@@ -84,7 +91,7 @@ li {
         .angled-line-icon-1 {
           width: 30px;
           height: 2px;
-          background-color: white;
+          background-color: #102C57;
           transform: rotate(-45deg);
           margin-bottom: -3px;
         }
@@ -92,7 +99,7 @@ li {
         .angled-line-icon-2 {
           width: 30px;
           height: 2px;
-          background-color: white;
+          background-color: #102C57;
           transform: rotate(45deg);
         }
 

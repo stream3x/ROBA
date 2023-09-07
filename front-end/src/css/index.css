@@ -270,3 +270,15 @@ hr {
   }
 
   /* ---------- box card ---------- */
+
+  .map-box {
+    border: 2px solid #EADBC8;
+    border-radius: 5px;
+    width: 800px;
+  }
+
+  .leaflet-container {
+    height: 600px;
+    width: 100%;
+    background-color: red;
+    }

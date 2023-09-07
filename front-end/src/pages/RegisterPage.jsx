@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 import justLogo from '../images/justlogo500.png';
 import leftArrow from '../images/left-arrow.png';
 import LoaderModal from '../components/LoaderModal.jsx';
 import ModalAlert from '../components/ModalAlert.jsx';
+import MapView from '../components/MapView.jsx';
 
 const RegisterPage = () => {
 
@@ -71,6 +73,7 @@ useEffect(() => {
       if (response.ok) {
         const userData = await response.json();
         console.log(userData);
+        //
       } else {
         console.log('Errore: ', response);
       }
@@ -90,6 +93,8 @@ useEffect(() => {
   }
 
   // ----- GESTISCO L'UPLOAD DELL'IMMAGINE ----- //
+
+
 
   const [imageUploaded, setImageUploaded] = useState('');
 
@@ -174,6 +179,10 @@ useEffect(() => {
         </div>
 
       )}
+      </div>
+
+      <div className="map-box">
+        <MapView />
       </div>
 
       {isFetchPending && <LoaderModal isFetchPending={isFetchPending} />}

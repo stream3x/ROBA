@@ -171,11 +171,54 @@ hr {
   flex-direction: column;
   align-items: flex-start;
   gap: 20px;
+  width: 700px;
+}
+
+.border-box-form-add h5 {
+  max-width: 100%;
+}
+
+#position {
+  background-color: #EADBC8;
+  min-height: 50px;
+  min-width: 200px;
+  border-radius: 5px;
+  padding: 15px;
+  color: grey;
+}
+
+@media  (max-width: 900px) {
+  .border-box-form-add {
+    width: 280px;
+  }
 }
 
 /* ---------- register box form ---------- */
 
+/* ---------- MAP ---------- */
 
+.map-box {
+  border: 2px solid #EADBC8;
+  border-radius: 5px;
+  width: 800px;
+}
+
+@media  (max-width: 900px) {
+  .map-box {
+    width: 380px;
+  }
+}
+
+.leaflet-container {
+  height: 380px;
+  width: 100%;
+  }
+
+.map-container {
+  cursor: pointer !important;
+}
+
+/* ---------- map ---------- */
 
 /* ---------- // BOX CARD CONTAINER // ---------- */
 
@@ -270,15 +313,3 @@ hr {
   }
 
   /* ---------- box card ---------- */
-
-  .map-box {
-    border: 2px solid #EADBC8;
-    border-radius: 5px;
-    width: 800px;
-  }
-
-  .leaflet-container {
-    height: 600px;
-    width: 100%;
-    background-color: red;
-    }

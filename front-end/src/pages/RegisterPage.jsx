@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 
 import justLogo from '../images/justlogo500.png';
 import leftArrow from '../images/left-arrow.png';
+import locationIcon from '../images/location.png';
 import LoaderModal from '../components/LoaderModal.jsx';
 import ModalAlert from '../components/ModalAlert.jsx';
 import MapView from '../components/MapView.jsx';
@@ -136,6 +137,15 @@ useEffect(() => {
     }))
   }, [imageUploaded])
 
+  // ----- GESTIONE CLICK SULLA MAPPA ----- //
+
+  const handleMapClick = (coordinates) => {
+    setInputData((prevInputData) => ({
+      ...prevInputData,
+      position: coordinates
+    }))
+  }
+
   // ----- //
 
   return (
@@ -168,21 +178,35 @@ useEffect(() => {
           <label htmlFor="birthdate">Data di nascita:</label>
           <input type="date" id="birthdate" onChange={handleInputData} />
 
-          <label htmlFor="position">Indirizzo di casa (dove tieni la tua ROBA):</label>
-          <input type="position" id="position" onChange={handleInputData} />
+          <hr />
 
           <label htmlFor="avatar">Foto del profilo (Max 5mb):</label>
           <input type="file" accept="image/" id="avatar" onChange={handleUploadImage} />
-
           <div>{imageUploaded ? <img src={imageUploaded} alt="Avatar" style={{width: '100px', opacity: '0.5'}}/> : <h6>Nessuna immagine caricata</h6>}</div>
+
+          <hr />
+
+          <label htmlFor="position">Indirizzo di casa (dove tieni la tua ROBA):</label>
+          <div id="position" onChange={handleInputData}>{inputData.position.lat} {inputData.position.lng}</div>
+
+          <h5><img src={locationIcon} style={{width: '20px'}}/> Nella mappa qui sotto clicca dove si trova casa tua (dove tieni la tua ROBA).
+          <br /><br />
+          Utilizza lo zoom per essere più preciso, verranno indicate le coordinate in automatico qui sopra.
+          <br /><br />
+          Questo passaggio è importante per consigliarti gli oggetti in offerta più vicini a te!</h5>
+
+          <hr />
+
+          <h5>Quando hai compilato tutti i campi del form clicca il tasto qui sotto:</h5>
           <button onClick={registerUser} >Invia i tuoi dati</button>
         </div>
 
       )}
+
       </div>
 
       <div className="map-box">
-        <MapView />
+        <MapView onMapClick={handleMapClick} />
       </div>
 
       {isFetchPending && <LoaderModal isFetchPending={isFetchPending} />}

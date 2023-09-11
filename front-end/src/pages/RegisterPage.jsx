@@ -95,8 +95,6 @@ useEffect(() => {
 
   // ----- GESTISCO L'UPLOAD DELL'IMMAGINE ----- //
 
-
-
   const [imageUploaded, setImageUploaded] = useState('');
 
   const [isTooBigAlert, setIsTooBigAlert] = useState(false); // gestione chiusura modale
@@ -139,11 +137,35 @@ useEffect(() => {
 
   // ----- GESTIONE CLICK SULLA MAPPA ----- //
 
+  const [cityAddress, setCityAddress] = useState('');
+
   const handleMapClick = (coordinates) => {
     setInputData((prevInputData) => ({
       ...prevInputData,
       position: coordinates
     }))
+
+    //----- FETCH DI RICHIESTA NOME CITTA' -----//
+
+      const fetchCityFromCoordinates = async () => {
+        try {
+          const res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${coordinates.lat}&lon=${coordinates.lng}&format=json`);
+
+            if(!res.ok) {
+              throw new Error('Failed to fetch data');
+            }
+
+            const cityData = await res.json();
+            setCityAddress(cityData.display_name);
+        } catch (error) {
+          console.error('Error fetching city: ', error)
+        }
+      }
+
+      fetchCityFromCoordinates();
+
+    //-----//
+
   }
 
   // ----- //
@@ -181,17 +203,28 @@ useEffect(() => {
           <hr />
 
           <label htmlFor="avatar">Foto del profilo (Max 5mb):</label>
-          <input type="file" accept="image/" id="avatar" onChange={handleUploadImage} />
-          <div>{imageUploaded ? <img src={imageUploaded} alt="Avatar" style={{width: '100px', opacity: '0.5'}}/> : <h6>Nessuna immagine caricata</h6>}</div>
+          <input className="add-file" type="file" accept="image/" id="avatar" onChange={handleUploadImage} />
+          <div>
+            {
+              imageUploaded ? (
+                <div>
+                  <h6>Anteprima avatar</h6>
+                  <img src={imageUploaded} alt="Avatar" style={{width: '100px', opacity: '0.5'}}/>
+                </div>
+              ) : (
+                <h6>Nessuna immagine caricata</h6>
+              )
+            }
+          </div>
 
           <hr />
 
           <label htmlFor="position">Indirizzo di casa (dove tieni la tua ROBA):</label>
-          <div id="position" onChange={handleInputData}>{inputData.position.lat} {inputData.position.lng}</div>
+          <div className="coordinates-div" id="cityAddress">{cityAddress}</div>
 
           <h5><img src={locationIcon} style={{width: '20px'}}/> Nella mappa qui sotto clicca dove si trova casa tua (dove tieni la tua ROBA).
           <br /><br />
-          Utilizza lo zoom per essere più preciso, verranno indicate le coordinate in automatico qui sopra.
+          Utilizza lo zoom per essere più preciso, verrà indicato l'indirizzo in automatico qui sopra.
           <br /><br />
           Questo passaggio è importante per consigliarti gli oggetti in offerta più vicini a te!</h5>
 
@@ -205,9 +238,9 @@ useEffect(() => {
 
       </div>
 
-      <div className="map-box">
+      {!isFetchDone ? (<div className="map-box">
         <MapView onMapClick={handleMapClick} />
-      </div>
+      </div>) : (<></>)}
 
       {isFetchPending && <LoaderModal isFetchPending={isFetchPending} />}
       {isTooBigAlert && <ModalAlert message="Le dimensioni dell'avatar non devono superare i 5mb!" expTime={5000} onClose={handleOnClose} />}

@@ -90,7 +90,10 @@ const LoginHomePage = ({ onLogin }) => {
 
   return (
     <div className="container">
+      <h1>Regala gli oggetti che non usi, riduciamo insieme gli sprechi.</h1>
+
         <img src={logoImage} id="logo-image" alt="Roba logo"/>
+
         <div className="border-box">
         <label htmlFor="email">Email:</label>
         <input type="email" id="email" placeholder="Inserisci la tua email" onChange={handleInputData} className={errorMessage ? 'wrong-input' : ''}></input>
@@ -101,6 +104,9 @@ const LoginHomePage = ({ onLogin }) => {
       </div>
       {isModalAlert && <ModalAlert message="Benvenuto! Esegui il login per accedere alla piattaforma." expTime={6000} onClose={handleOnClose} />}
       {errorMessage && <ModalAlert message={errorMessage} expTime={3000} onClose={handleOnClose} />}
+
+      <h2>Cos'è ROBA?</h2>
+
     </div>
   )
 }

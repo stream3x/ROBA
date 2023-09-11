@@ -19,15 +19,15 @@ const RobaModelSchema = new mongoose.Schema({
     required: true
   },
   photo: {
-    type: String,
+    type: Object,
     required: true,
   },
   status: { // Impostare enum
     type: String,
-    enum: ['Da riparare', 'Con parti mancanti', 'Buono stato', 'Praticamente nuovo'],
+    enum: ['Nuovo', 'In buono stato', 'In stato accettabile', 'Con parti mancanti', 'Da riparare'],
     required: true
   },
-  dismantled: {
+  dismantled: { // Spunta casella (Smontato/Imballato)
     type: Boolean,
     required: true
   },

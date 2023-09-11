@@ -23,7 +23,7 @@ const UserModelSchema = new mongoose.Schema({
     required: true
   },
   position: {
-    type: String,
+    type: Object,
     required: true
   },
   avatar: {

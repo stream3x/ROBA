@@ -13,7 +13,7 @@
 
 .visible {
   opacity: 1;
-  transition: 2s;
+  transition: 1s;
 }
 
 .add-roba-line-1 {
@@ -44,6 +44,18 @@
 
 .add-roba-button:hover {
   border: 2px solid #102C57;
+}
+
+.add-button-message {
+  padding: 10px;
+  background-color: #102C57;
+  border-radius: 5px;
+  color: #F8F0E5;
+  font-size: 10pt;
+  position: absolute;
+  bottom: -45px;
+  left: 0px;
+  right: 0px;
 }
 
 

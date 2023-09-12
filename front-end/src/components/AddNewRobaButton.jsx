@@ -5,6 +5,8 @@ import '../css/addRobaButton.css';
 
 const AddNewRobaButton = () => {
 
+  //----- GESTISCO COMPARSA DEL BUTTON -----//
+
   const [isButtonVisible, setIsButtonVisible] = useState(false);
 
   const getTime = () => {
@@ -25,12 +27,33 @@ const AddNewRobaButton = () => {
     navigate('/newRoba');
   }
 
+  //-----//
+
+  //----- GESTISCO MESSAGGIO BUTTON -----//
+
+  const [isMouseEnter, setIsMouseEnter] = useState(false);
+
+  const handleMouseEnter = () => {
+    setIsMouseEnter(true);
+  }
+
+  const handleMouseLeave = () => {
+    setIsMouseEnter(false);
+  }
+
+  /////
 
   return (
 
-      <div className={!isButtonVisible ? 'add-roba-button' : 'add-roba-button visible'} onClick={goToAddNewRoba}>
+      <div
+        className={!isButtonVisible ? 'add-roba-button' : 'add-roba-button visible'}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+        onClick={goToAddNewRoba}
+      >
       <div className="add-roba-line-1"></div>
       <div className="add-roba-line-2"></div>
+        {isMouseEnter && <div className="add-button-message">Offri un tuo oggetto</div>}
       </div>
 
   )

@@ -54,8 +54,9 @@
   font-size: 10pt;
   position: absolute;
   bottom: -45px;
-  left: 0px;
-  right: 0px;
+  right: 0;
+  width: 225px;
+  text-align: right;
 }
 
 

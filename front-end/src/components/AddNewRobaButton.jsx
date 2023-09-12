@@ -53,7 +53,7 @@ const AddNewRobaButton = () => {
       >
       <div className="add-roba-line-1"></div>
       <div className="add-roba-line-2"></div>
-        {isMouseEnter && <div className="add-button-message">Offri un tuo oggetto</div>}
+        {isMouseEnter && <div className="add-button-message">Metti in offerta un tuo oggetto</div>}
       </div>
 
   )

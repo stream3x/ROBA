@@ -8,7 +8,7 @@ import MapEvent from './MapEvent.jsx';
 import locationIcon from '../images/marker2.png';
 
 
-const MapView = ({ onMapClick }) => {
+const RegisterMapView = ({ onMapClick }) => {
 
   const [center, setCenter] = useState({ lat: 45.5357166159217, lng: 10.539696977141636 });
   const zoomLevel = 16;
@@ -41,4 +41,4 @@ const MapView = ({ onMapClick }) => {
   )
 }
 
-export default MapView;
+export default RegisterMapView;

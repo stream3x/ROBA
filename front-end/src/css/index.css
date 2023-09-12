@@ -215,7 +215,7 @@ hr {
 
 /* ---------- register box form ---------- */
 
-/* ---------- MAP ---------- */
+/* ---------- REGISTER MAP ---------- */
 
 .map-box {
   border: 2px solid #EADBC8;
@@ -236,6 +236,24 @@ hr {
 
 .map-container {
   cursor: pointer !important;
+}
+
+/* ---------- USER MAP ---------- */
+
+.user-map-box {
+  border: 2px solid #EADBC8;
+  border-radius: 5px;
+  width: 400px;
+}
+
+.user-leaflet-container {
+  height: 150px;
+  width: 100%;
+}
+
+.user-map-container {
+  cursor: pointer !important;
+  height: 150px;
 }
 
 /* ---------- map ---------- */

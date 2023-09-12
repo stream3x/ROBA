@@ -22,6 +22,10 @@ const Navbar = ({ onLogout }) => {
     navigate('/userProfile');
   }
 
+  const goToMyRoba = () => {
+    navigate('/myRoba');
+  }
+
   //-----//
 
   // ----- FUNZIONE DI LOGOUT ----- //
@@ -43,7 +47,7 @@ const Navbar = ({ onLogout }) => {
         <ul>
           <li>Home</li>
           <li onClick={goToProfile}>Il mio profilo</li>
-          <li>La mia ROBA</li>
+          <li onClick={goToMyRoba}>La mia ROBA</li>
           <li>I miei scambi</li>
           <li>Il mio punteggio</li>
           <li>Assistenza</li>
@@ -67,7 +71,7 @@ const Navbar = ({ onLogout }) => {
           <ul>
             <li>Home</li>
             <li onClick={goToProfile}>Il mio profilo</li>
-            <li>La mia ROBA</li>
+            <li onClick={goToMyRoba}>La mia ROBA</li>
             <li>I miei scambi</li>
             <li>Il mio punteggio</li>
             <li>Assistenza</li>

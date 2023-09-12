@@ -4,9 +4,10 @@
   import LoggedHomePage from './pages/LoggedHomePage.jsx';
   import AddNewRoba from './pages/AddNewRoba.jsx';
   import UserProfile from './pages/UserProfile.jsx';
-  import ProtectedRoute from './middlewares/ProtectedRoutes.js'
-  import Navbar from './components/navbar.jsx'
-  import RegisterPage from './pages/RegisterPage.jsx'
+  import ProtectedRoute from './middlewares/ProtectedRoutes.js';
+  import Navbar from './components/navbar.jsx';
+  import RegisterPage from './pages/RegisterPage.jsx';
+  import MyRoba from './pages/MyRoba.jsx';
 
   function App() {
 
@@ -39,6 +40,7 @@
               <Route exact path="/homepage" element={<LoggedHomePage />} />
               <Route exact path="/newRoba" element={<AddNewRoba />} />
               <Route exact path="/userProfile" element={<UserProfile />} />
+              <Route exact path="/myRoba" element={<MyRoba />} />
             </Route>
           </Routes>
         </Router>

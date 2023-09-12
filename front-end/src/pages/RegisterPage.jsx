@@ -6,7 +6,7 @@ import leftArrow from '../images/left-arrow.png';
 import locationIcon from '../images/location.png';
 import LoaderModal from '../components/LoaderModal.jsx';
 import ModalAlert from '../components/ModalAlert.jsx';
-import MapView from '../components/MapView.jsx';
+import RegisterMapView from '../components/RegisterMapView.jsx';
 
 const RegisterPage = () => {
 
@@ -247,7 +247,7 @@ useEffect(() => {
       </div>
 
       {!isFetchDone ? (<div className="map-box">
-        <MapView onMapClick={handleMapClick} />
+        <RegisterMapView onMapClick={handleMapClick} />
       </div>) : (<></>)}
 
       {isFetchPending && <LoaderModal isFetchPending={isFetchPending} />}

@@ -1,3 +1,5 @@
+import cloudinary from '../utils/cloudinary.js';
+
 import { RobaModel } from '../models/robaModel.js';
 import { UserModel } from '../models/userModel.js';
 
@@ -23,7 +25,7 @@ export const addNewRoba = async (req, res) => {
           supplier: req.body.supplier,
           category: req.body.category,
           description: req.body.description,
-          photos: uploadResponse,
+          photo: uploadResponse,
           status: req.body.status,
           dismantled: req.body.dismantled,
           stuffThought: req.body.stuffThought,
@@ -47,6 +49,7 @@ export const addNewRoba = async (req, res) => {
       }
     }
   } catch (error) {
+    console.log(error)
     res.status(500).send({
       statusCode: 500,
       message: 'Internal Server Error!',

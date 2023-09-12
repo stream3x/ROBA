@@ -14,6 +14,7 @@ const RegisterPage = () => {
 
   const [isFetchPending, setIsFetchPending] = useState(false);
   const [isFetchDone, setIsFetchDone] = useState(false)
+  const [isError, setIsError] = useState(false);
 
   // ----- //
 
@@ -53,37 +54,6 @@ const RegisterPage = () => {
 useEffect(() => {
   console.log(inputData);
 }, [inputData])
-
-  // ----- //
-
-  // ----- CHIAMATA FETCH PER L'INVIO DEI DATI ----- //
-
-  const registerUser = async (e) => {
-
-    setIsFetchPending(true)
-    const dateObject = new Date(inputData.birthdate);
-
-    try {
-      const response = await fetch('http://localhost:6060/users/register', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(inputData)
-      });
-      if (response.ok) {
-        const userData = await response.json();
-        console.log(userData);
-        //
-      } else {
-        console.log('Errore: ', response);
-      }
-    } catch (error) {
-      console.log('Error type: ', error);
-    }
-    setIsFetchPending(false);
-    setIsFetchDone(true);
-  }
 
   // ----- //
 
@@ -137,8 +107,6 @@ useEffect(() => {
 
   // ----- GESTIONE CLICK SULLA MAPPA ----- //
 
-  const [fullPosition, setFullPosition] = useState({});
-
   const handleMapClick = (coordinates) => {
 
         //----- FETCH DI RICHIESTA NOME CITTA' -----//
@@ -152,10 +120,6 @@ useEffect(() => {
                 }
 
                 const cityData = await res.json();
-                // setFullPosition({
-                //   coordinates: coordinates,
-                //   address: cityData.features[0].place_name_it
-                // });
 
                 setInputData(prevInputData => ({
                   ...prevInputData,
@@ -175,15 +139,38 @@ useEffect(() => {
 
   }
 
-  // useEffect(() => {
-  //   setInputData((prevInputData) => ({
-  //     ...prevInputData,
-  //     position: {
-  //       coordinates: fullPosition.coordinates,
-  //       address: fullPosition.address
-  //     }
-  //   }))
-  // }, [fullPosition])
+  // ----- //
+
+  // ----- CHIAMATA FETCH PER L'INVIO DEI DATI ----- //
+
+  const registerUser = async (e) => {
+
+    setIsFetchPending(true)
+    const dateObject = new Date(inputData.birthdate);
+
+    try {
+      const response = await fetch('http://localhost:6060/users/register', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(inputData)
+      });
+      if (response.ok) {
+        const userData = await response.json();
+        console.log(userData);
+        //
+      } else {
+        console.log('Errore: ', response);
+        setIsError(true);
+      }
+    } catch (error) {
+      console.log('Error type: ', error);
+      setIsError(true);
+    }
+    setIsFetchPending(false);
+    setIsFetchDone(true);
+  }
 
   // ----- //
 
@@ -195,7 +182,11 @@ useEffect(() => {
 
         {isFetchDone ? (
 
-          <h3>Registrazione effettuata con successo. Torna indietro ed esegui il login.</h3>
+          !isError ? (
+            <h3>Nuovo utente inserito con successo.</h3>
+          ) : (
+            <h3>Qualcosa è andato storto. Torna indietro e riprova.</h3>
+          )
 
       ) : (
 

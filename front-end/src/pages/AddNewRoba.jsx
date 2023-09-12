@@ -52,42 +52,6 @@ const AddNewRoba = () => {
 
   //-----//
 
-  //----- GESTIONE FETCH INSERIMENTO OGGETTO ROBA -----//
-
-  const [isFetchPending, setIsFetchPending] = useState(false);
-  const [isFetchDone, setIsFetchDone] = useState(false);
-  const [isError, setIsError] = useState(false);
-
-  const addRoba = async () => {
-    setIsFetchPending(true);
-
-    try {
-
-      const response = await fetch('http://localhost:6060/roba/new', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(inputData)
-      })
-
-      if(response.ok) {
-        const robaData = await response.json();
-      } else {
-        console.log('Errore: ', response);
-        setIsError(true);
-      }
-
-    } catch (error) {
-      console.log('Error type: ', error)
-      setIsError(true);
-    }
-    setIsFetchPending(false);
-    setIsFetchDone(true);
-  }
-
-  //-----//
-
   const navigate = useNavigate();
 
   const backLink = () => {
@@ -122,6 +86,42 @@ const AddNewRoba = () => {
       photo: uploadedImage
     }))
   }, [uploadedImage])
+
+  //-----//
+
+  //----- GESTIONE FETCH INSERIMENTO OGGETTO ROBA -----//
+
+  const [isFetchPending, setIsFetchPending] = useState(false);
+  const [isFetchDone, setIsFetchDone] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  const addRoba = async () => {
+    setIsFetchPending(true);
+
+    try {
+
+      const response = await fetch('http://localhost:6060/roba/new', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(inputData)
+      })
+
+      if(response.ok) {
+        const robaData = await response.json();
+      } else {
+        console.log('Errore: ', response);
+        setIsError(true);
+      }
+
+    } catch (error) {
+      console.log('Error type: ', error)
+      setIsError(true);
+    }
+    setIsFetchPending(false);
+    setIsFetchDone(true);
+  }
 
   //-----//
 

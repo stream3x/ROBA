@@ -1,10 +1,12 @@
 
 const RobaCard = ({ data }) => {
 
+  console.log('RobaCard data: ', data);
+
   return (
     <div className="roba-box">
       <div className="roba-box-img-section">
-        <img src={data.photos[0]} />
+        <img src={data.photo.url} />
       </div>
       <div className="roba-box-info-section">
         <h3>{data.robaName}</h3>

@@ -1,0 +1,60 @@
+.add-roba-button {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  background-color: rgba(234, 219, 200, 0.8);
+  border: 2px solid #DAC0A3;
+  border-radius: 100px;
+  width: 160px;
+  height: 160px;
+  cursor: pointer;
+  opacity: 0;
+}
+
+.visible {
+  opacity: 1;
+  transition: 2s;
+}
+
+.add-roba-line-1 {
+  width: 80px;
+  height: 5px;
+  border-radius: 2.5px;
+  background-color: #DAC0A3;
+  position: absolute;
+  top: 50%;
+  left: 25%;
+}
+
+.add-roba-line-2 {
+  width: 80px;
+  height: 5px;
+  border-radius: 2.5px;
+  background-color: #DAC0A3;
+  position: absolute;
+  transform: rotate(90deg);
+  top: 50%;
+  left: 25%;
+}
+
+.add-roba-button:hover .add-roba-line-1, .add-roba-button:hover .add-roba-line-2 {
+  background-color: #102C57;
+  transition: 1s;
+}
+
+.add-roba-button:hover {
+  border: 2px solid #102C57;
+}
+
+
+@media (max-width: 768px) {
+  .add-roba-button {
+    width: 120px;
+    height: 120px;
+  }
+
+  .add-roba-line-1, .add-roba-line-2 {
+    width: 60px;
+    height: 2.5px;
+  }
+}

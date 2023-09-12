@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import jwtDecode from 'jwt-decode';
+
 import RobaCard from '../components/RobaCard.jsx'
 import LoaderModal from '../components/LoaderModal.jsx'
+import AddNewRobaButton from '../components/AddNewRobaButton.jsx'
 
 const LoggedHomePage = () => {
 
@@ -16,11 +18,12 @@ const LoggedHomePage = () => {
   const [isFetchPending, setIsFetchPending] = useState(true);
 
   const getRobaData = async () => {
-    console.log("HERE");
+
     try {
       const response = await fetch('http://localhost:6060/roba', {
         method: 'GET',
         headers: {
+          Authorization: `Bearer ${userToken}`,
           'Content-Type': 'application/json'
         }
       })
@@ -48,7 +51,6 @@ const LoggedHomePage = () => {
 
   // ----- //
 
-
   return (
     <div className="container">
     <h3>Ecco gli oggetti offerti attorno a te:</h3>
@@ -61,10 +63,8 @@ const LoggedHomePage = () => {
 
         robaArray.length !== 0 && robaArray.map((element) => (
 
-          element.supplier._id !== decodedToken.id ? (
+          element.supplier._id !== decodedToken.id && (
             <RobaCard key={element._id} data={element} />
-          ) : (
-            <></>
           )
 
         ))
@@ -74,6 +74,8 @@ const LoggedHomePage = () => {
       </div>
 
       {isFetchPending && <LoaderModal isFetchPending={isFetchPending} />}
+
+      <AddNewRobaButton />
     </div>
   )
 }

@@ -7,15 +7,16 @@ import {
   getUserByEmail,
   getUsersByName
 } from '../controllers/usersController.js'
+import { authenticationToken } from '../middlewares/userValidation.js';
 
 const usersRoute = express.Router()
 
 usersRoute.post('/register', addNewUser);
 usersRoute.post('/login', login);
-usersRoute.get('/', getAllUsers);
-usersRoute.get('/:userId', getUserById);
-usersRoute.get('/byemail/:userEmail', getUserByEmail);
-usersRoute.get('/byname/name', getUsersByName)
+usersRoute.get('/', authenticationToken, getAllUsers);
+usersRoute.get('/:userId', authenticationToken, getUserById);
+usersRoute.get('/byemail/:userEmail', authenticationToken, getUserByEmail);
+usersRoute.get('/byname/name', authenticationToken, getUsersByName)
 
 
 export default usersRoute;

@@ -19,10 +19,10 @@ const AddNewRoba = () => {
   const  initialInput = {
     robaName: '',
     supplier: decodedToken.id,
-    category: '',
+    category: 'Arredamento',
     description: '',
     photo: '',
-    status: '',
+    status: 'Nuovo',
     dismantled: false,
     stuffThought: '',
   }
@@ -103,6 +103,7 @@ const AddNewRoba = () => {
       const response = await fetch('http://localhost:6060/roba/new', {
         method: 'POST',
         headers: {
+          Authorization: `Bearer ${userToken}`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(inputData)

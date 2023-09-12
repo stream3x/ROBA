@@ -33,10 +33,10 @@
           <Routes>
             <Route exact path="/" element={isLogged ? <Navigate to="/homepage" /> : <LoginHomePage onLogin={handleLogin}/>} />
             <Route exact path="/register" element={<RegisterPage />} />
-            <Route exact path="/newRoba" element={<AddNewRoba />} />
-
+            
             <Route element={<ProtectedRoute />}>
               <Route exact path="/homepage" element={<LoggedHomePage />} />
+              <Route exact path="/newRoba" element={<AddNewRoba />} />
             </Route>
           </Routes>
         </Router>

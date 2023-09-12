@@ -1,8 +1,14 @@
 import { useState, useEffect } from 'react';
+import jwtDecode from 'jwt-decode';
 import RobaCard from '../components/RobaCard.jsx'
 import LoaderModal from '../components/LoaderModal.jsx'
 
 const LoggedHomePage = () => {
+
+  //----- CATTURA DATI UTENTE-----//
+
+  const userToken = localStorage.getItem('loggedUser');
+  const decodedToken = jwtDecode(userToken);
 
   // ----- CHIAMATA FETCH PER RICEVERE GLI OGGETTI ROBA ----- //
 
@@ -21,7 +27,7 @@ const LoggedHomePage = () => {
 
         if(response.ok) {
           const robaData = await response.json();
-          console.log(robaData);
+          console.log('robaData: ', robaData);
           setRobaArray(robaData.payload);
         } else {
           console.log('Errore durante la chiamata al server.')
@@ -52,10 +58,18 @@ const LoggedHomePage = () => {
         isFetchPending ? (
           <p></p>
         ) : (
+
         robaArray.length !== 0 && robaArray.map((element) => (
-          <RobaCard key={element._id} data={element} />
+
+          element.supplier._id !== decodedToken.id ? (
+            <RobaCard key={element._id} data={element} />
+          ) : (
+            <></>
+          )
+
         ))
       )
+
       }
       </div>
 

@@ -1,8 +1,6 @@
 
 const RobaCard = ({ data }) => {
 
-  console.log('RobaCard data: ', data);
-
   return (
     <div className="roba-box">
       <div className="roba-box-img-section">

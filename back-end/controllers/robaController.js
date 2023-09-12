@@ -9,16 +9,12 @@ export const addNewRoba = async (req, res) => {
 
   try {
 
-    console.log('HERE 1');
-
     if(robaPhoto) {
       const uploadResponse = await cloudinary.uploader.upload(robaPhoto, {
         upload_preset: 'roba-photo'
       });
 
       if(uploadResponse) {
-
-        console.log('HERE 2');
 
         const newRoba = new RobaModel({
           robaName: req.body.robaName,

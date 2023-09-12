@@ -137,36 +137,53 @@ useEffect(() => {
 
   // ----- GESTIONE CLICK SULLA MAPPA ----- //
 
-  const [cityAddress, setCityAddress] = useState('');
+  const [fullPosition, setFullPosition] = useState({});
 
   const handleMapClick = (coordinates) => {
-    setInputData((prevInputData) => ({
-      ...prevInputData,
-      position: coordinates
-    }))
 
-    //----- FETCH DI RICHIESTA NOME CITTA' -----//
+        //----- FETCH DI RICHIESTA NOME CITTA' -----//
 
-      const fetchCityFromCoordinates = async () => {
-        try {
-          const res = await fetch(`https://nominatim.openstreetmap.org/reverse?lat=${coordinates.lat}&lon=${coordinates.lng}&format=json`);
+          const fetchCityFromCoordinates = async () => {
+            try {
+              const res = await fetch(`https://api.maptiler.com/geocoding/${coordinates.lng},${coordinates.lat}.json?KEY=9gGPrBTJ97kVESJhzvbz`);
 
-            if(!res.ok) {
-              throw new Error('Failed to fetch data');
+                if(!res.ok) {
+                  throw new Error('Failed to fetch data');
+                }
+
+                const cityData = await res.json();
+                // setFullPosition({
+                //   coordinates: coordinates,
+                //   address: cityData.features[0].place_name_it
+                // });
+
+                setInputData(prevInputData => ({
+                  ...prevInputData,
+                  position: {
+                    coordinates: coordinates,
+                    address: cityData.features[0].place_name_it
+                  }
+                }))
+            } catch (error) {
+              console.error('Error fetching city: ', error)
             }
+          }
 
-            const cityData = await res.json();
-            setCityAddress(cityData.display_name);
-        } catch (error) {
-          console.error('Error fetching city: ', error)
-        }
-      }
+          fetchCityFromCoordinates();
 
-      fetchCityFromCoordinates();
-
-    //-----//
+        //-----//
 
   }
+
+  // useEffect(() => {
+  //   setInputData((prevInputData) => ({
+  //     ...prevInputData,
+  //     position: {
+  //       coordinates: fullPosition.coordinates,
+  //       address: fullPosition.address
+  //     }
+  //   }))
+  // }, [fullPosition])
 
   // ----- //
 
@@ -220,7 +237,7 @@ useEffect(() => {
           <hr />
 
           <label htmlFor="position">Indirizzo di casa (dove tieni la tua ROBA):</label>
-          <div className="coordinates-div" id="cityAddress">{cityAddress}</div>
+          <div className="coordinates-div" id="cityAddress">{inputData.position.address}</div>
 
           <h5><img src={locationIcon} style={{width: '20px'}}/> Nella mappa qui sotto clicca dove si trova casa tua (dove tieni la tua ROBA).
           <br /><br />

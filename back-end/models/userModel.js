@@ -23,8 +23,14 @@ const UserModelSchema = new mongoose.Schema({
     required: true
   },
   position: {
-    type: Object,
-    required: true
+    coordinates: {
+      type: Object,
+      required: true
+    },
+    address: {
+      type: String,
+      required: true
+    }
   },
   avatar: {
     type: Object,

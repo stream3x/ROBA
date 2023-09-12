@@ -23,7 +23,7 @@ export const addNewUser = async (req, res) => {
         email: req.body.email,
         password: hashedPassword,
         birthdate: req.body.birthdate,
-        position: req.body.position, // da sostituire con geolocalizzazione
+        position: req.body.position,
         avatar: uploadResponse,
       });
 

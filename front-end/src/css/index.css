@@ -88,17 +88,22 @@ hr {
   cursor: pointer;
 }
 
-.grey {
-  color: #DAC0A3;
-}
-
 .light-grey {
   color: #F8F0E5;
+}
+
+.grey {
+  color: #EADBC8;
+}
+
+.dark-grey {
+  color: #DAC0A3;
 }
 
 .white {
   color: white;
 }
+
 
 /* ---------- // MODALI // ---------- */
 
@@ -388,7 +393,7 @@ hr {
   }
 
   .user-header-icon img {
-    height: 50px;
+    width: 100%;
   }
 
   .user-header-info {
@@ -411,4 +416,19 @@ hr {
     margin-left: -80px;
     margin-right: -80px;
     margin-top: 10px;
+  }
+
+  .user-big-icon {
+    height: 200px;
+    width: 200px;
+    border: 5px solid #EADBC8;
+    border-radius: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .user-big-icon img {
+    width: 100%;
   }

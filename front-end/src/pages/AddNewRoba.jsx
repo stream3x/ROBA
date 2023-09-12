@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 
 import justLogo from '../images/justlogo500.png';
-import leftArrow from '../images/left-arrow.png';
+import BackLinkButton from '../components/BackLinkButton.jsx';
 import UserHeader from '../components/UserHeader.jsx';
 import LoaderModal from '../components/LoaderModal.jsx';
 
@@ -130,13 +130,13 @@ const AddNewRoba = () => {
 
     <div className="container">
       <img src={justLogo} style={{width: '50px'}}/><h2>Pagina di inserimento nuovo oggetto ROBA</h2>
-      <img src={leftArrow} className="left-arrow" onClick={backLink} />
+      <BackLinkButton />
       <div className="border-box">
 
         {isFetchDone ? (
 
           !isError ? (
-            <h3>Il tuo nuovo oggetto ROBA è stato inserito con successo. Verrai reindirizzato alla tua pagina personale.</h3>
+            <h3>Il tuo nuovo oggetto ROBA è stato inserito con successo.</h3>
           ) : (
             <h3>Qualcosa è andato storto. Torna indietro e riprova.</h3>
           )

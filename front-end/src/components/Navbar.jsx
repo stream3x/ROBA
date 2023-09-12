@@ -14,15 +14,25 @@ const Navbar = ({ onLogout }) => {
     }
   }
 
-  // ----- FUNZIONE DI LOGOUT ----- //
+  //----- LINKS -----//
 
   const navigate = useNavigate();
+
+  const goToProfile = () => {
+    navigate('/userProfile');
+  }
+
+  //-----//
+
+  // ----- FUNZIONE DI LOGOUT ----- //
+
 
   const handleLogout = () => {
     localStorage.removeItem('loggedUser');
     onLogout();
     navigate('/');
   }
+
 
   // ----- //
 
@@ -32,7 +42,7 @@ const Navbar = ({ onLogout }) => {
       <div className="desktop-main">
         <ul>
           <li>Home</li>
-          <li>Il mio profilo</li>
+          <li onClick={goToProfile}>Il mio profilo</li>
           <li>La mia ROBA</li>
           <li>I miei scambi</li>
           <li>Il mio punteggio</li>
@@ -56,7 +66,7 @@ const Navbar = ({ onLogout }) => {
           </div>
           <ul>
             <li>Home</li>
-            <li>Il mio profilo</li>
+            <li onClick={goToProfile}>Il mio profilo</li>
             <li>La mia ROBA</li>
             <li>I miei scambi</li>
             <li>Il mio punteggio</li>
